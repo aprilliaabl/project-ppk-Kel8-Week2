@@ -1,58 +1,22 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SRS — JARA, an Advanced Todo List
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## User Requirement
 
-## About Laravel
+JARA adalah aplikasi web untuk mengelola tugas pribadi maupun tim. Pengguna dapat membuat, mengelompokkan, dan mengatur tugas ke dalam beberapa daftar (list/project), menetapkan prioritas dan tenggat waktu, serta menandai tugas sebagai selesai.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Pemilik daftar dapat menambahkan pengguna lain ke dalam daftar tugasnya agar dapat dikerjakan bersama, dan memantau progres penyelesaian tugas dalam daftar tersebut.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Admin bertanggung jawab menambah dan menghapus akun pengguna dalam sistem.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Daftar SRS
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Kode SRS | Deskripsi | Kriteria |
+|---|---|---|
+| SRS-01 | **Manajemen Akun** — Pengguna dapat melakukan login dan menggunakan akun untuk mengakses sistem. | Pengguna dapat login dengan akun yang terdaftar dan masuk ke halaman utama. |
+| SRS-02 | **Manajemen List/Project** — Pengguna dapat membuat, melihat, mengubah, dan menghapus daftar tugas (list/project). | User dapat melakukan Create, Read, Update, Delete list/project miliknya sendiri. |
+| SRS-03 | **Manajemen Tugas** — Pengguna dapat membuat, melihat, mengubah, dan menghapus tugas dalam suatu list/project. | User dapat melakukan Create, Read, Update, Delete tugas pada list yang dimilikinya. |
+| SRS-04 | **Prioritas & Tenggat Waktu** — Pengguna dapat memberikan prioritas dan deadline pada tugas. | Setiap tugas dapat memiliki prioritas dan tanggal tenggat yang dapat diubah. |
+| SRS-05 | **Status Penyelesaian** — Pengguna dapat menandai tugas sebagai selesai dan melihat status penyelesaiannya. | Status tugas dapat diubah menjadi selesai/belum selesai. |
+| SRS-06 | **Kolaborasi List** — Pemilik list dapat menambahkan pengguna lain ke dalam list tugas untuk bekerja bersama. | Owner dapat menambahkan user ke list dan user tersebut dapat mengakses tugas dalam list. |
+| SRS-07 | **Monitoring Progress** — Pengguna dapat melihat perkembangan penyelesaian tugas dalam suatu list. | Sistem menampilkan jumlah/progres tugas selesai dibandingkan seluruh tugas. |
+| SRS-08 | **Manajemen User oleh Admin** — Admin dapat menambah dan menghapus akun pengguna. | Admin dapat membuat akun user baru dan menghapus akun yang terdaftar. |
