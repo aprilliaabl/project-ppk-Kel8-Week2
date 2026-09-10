@@ -2,13 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListMemberController;
+use App\Http\Controllers\AuthController;
+
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
-// Semua route di bawah ini hanya bisa diakses oleh user yang sudah login
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+});
+
 Route::middleware('auth')->group(function () {
+    
+    Route::get('/dashboard-admin', function () {
+        return view('dashboard_admin');
+    });
+
+    Route::get('/dashboard-user', function () {
+        return view('dashboard_user');
+    });
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
 
     // SRS-06: Kolaborasi List — Kelola member dalam list
     // GET    /lists/{list}/members         → tampil halaman daftar member
@@ -22,5 +39,4 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/lists/{list}/members/{user}', [ListMemberController::class, 'destroy'])
         ->name('lists.members.destroy');
-
 });
