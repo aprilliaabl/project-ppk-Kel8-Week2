@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
@@ -19,14 +20,14 @@ class Task extends Model
     ];
 
     protected $casts = [
-        'is_completed' => 'boolean', // SRS-05: agar otomatis jadi true/false
-        'due_date'     => 'date',    // SRS-04: agar otomatis jadi Carbon date
+        'is_completed' => 'boolean',
+        'due_date' => 'date',
     ];
 
     /**
      * SRS-03: Relasi ke list/project tempat tugas ini berada.
      */
-    public function list()
+    public function list(): BelongsTo
     {
         return $this->belongsTo(TodoList::class, 'list_id');
     }

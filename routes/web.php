@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListMemberController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminUserController;
-
+use App\Http\Controllers\ListController;
+use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -22,15 +23,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/dashboard-user', function () {
-                return view('dashboard_user');
+        return view('dashboard_user');
     });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // SRS-06: Kolaborasi List — Kelola member dalam list
-    // GET    /lists/{list}/members         → tampil halaman daftar member
-    // POST   /lists/{list}/members         → tambah member baru
-    // DELETE /lists/{list}/members/{user}  → hapus member dari list
     Route::get('/lists/{list}/members', [ListMemberController::class, 'index'])
         ->name('lists.members.index');
 
@@ -52,4 +50,26 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])
         ->name('admin.users.destroy');
+
+    // SRS-02: Manajemen List/Project
+    Route::resource('lists', ListController::class);
+
+    // SRS-03, SRS-04, SRS-05: Manajemen Tugas
+    Route::post('lists/{list}/tasks', [TaskController::class, 'store'])
+        ->name('tasks.store');
+
+    Route::get('lists/{list}/tasks/create', [TaskController::class, 'create'])
+        ->name('tasks.create');
+
+    Route::get('lists/{list}/tasks/{task}/edit', [TaskController::class, 'edit'])
+        ->name('tasks.edit');
+
+    Route::put('lists/{list}/tasks/{task}', [TaskController::class, 'update'])
+        ->name('tasks.update');
+
+    Route::patch('lists/{list}/tasks/{task}/toggle', [TaskController::class, 'toggle'])
+        ->name('tasks.toggle');
+
+    Route::delete('lists/{list}/tasks/{task}', [TaskController::class, 'destroy'])
+        ->name('tasks.destroy');
 });
