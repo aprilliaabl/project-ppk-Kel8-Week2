@@ -20,12 +20,15 @@ class Task extends Model
     ];
 
     protected $casts = [
-        'due_date' => 'date',
         'is_completed' => 'boolean',
+        'due_date' => 'date',
     ];
 
+    /**
+     * SRS-03: Relasi ke list/project tempat tugas ini berada.
+     */
     public function list(): BelongsTo
     {
-        return $this->belongsTo(TaskList::class, 'list_id');
+        return $this->belongsTo(TodoList::class, 'list_id');
     }
 }
